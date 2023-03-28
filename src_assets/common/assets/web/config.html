@@ -550,6 +550,22 @@
           Disable if you encounter any VSync-related issues.
         </div>
       </div>
+      <!--min_fps_factor-->
+      <div class="mb-3">
+        <label for="qp" class="form-label">Minimum FPS Factor</label>
+        <input
+          type="number"
+          class="form-control"
+          id="min_fps_factor"
+          placeholder="1"
+          v-model="config.min_fps_factor"
+        />
+        <div class="form-text">
+          Sunshine will use this factor to calculate the minimum time between frames.<br />
+          Increasing this value slightly may help when streaming mostly static content.<br />
+          Higher values will consume more bandwidth.<br />
+        </div>
+      </div>
       <div class="mb-3 config-page" v-if="platform === 'linux'">
         <label for="output_name" class="form-label">Monitor number</label>
         <input
@@ -595,7 +611,7 @@
           Quantization Parameter<br />
           Some devices may not support Constant Bit Rate.<br />
           For those devices, QP is used instead.<br />
-          Higher value means more compression, but less quality<br />
+          Higher value means more compression, but less quality.<br />
         </div>
       </div>
       <!-- Min Threads -->
@@ -983,6 +999,7 @@
     "key_rightalt_to_key_win": "disabled",
     "keyboard": "enabled",
     "min_log_level": 2,
+    "min_fps_factor": 1,
     "mouse": "enabled",
     "nv_coder": "auto",
     "nv_preset": "p4",

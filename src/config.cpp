@@ -330,6 +330,7 @@ namespace config {
 
     0,  // hevc_mode
 
+    1,  // min_fps_factor
     1,  // min_threads
     {
       "superfast"s,  // preset
@@ -957,6 +958,7 @@ namespace config {
     string_f(vars, "adapter_name", video.adapter_name);
     string_f(vars, "output_name", video.output_name);
     bool_f(vars, "dwmflush", video.dwmflush);
+    int_between_f(vars, "min_fps_factor", video.min_fps_factor, { 1, 3 });
 
     path_f(vars, "pkey", nvhttp.pkey);
     path_f(vars, "cert", nvhttp.cert);
