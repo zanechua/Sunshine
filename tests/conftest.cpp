@@ -5,16 +5,16 @@
 #include <boost/log/expressions.hpp>
 #include <boost/log/sinks/sync_frontend.hpp>
 #include <boost/log/sinks/text_ostream_backend.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include <src/globals.h>
+#include <src/logging.h>
 #include <src/platform/common.h>
 
 #include <tests/utils.h>
 
-namespace logging = boost::log;
-namespace sinks = logging::sinks;
+namespace boost_logging = boost::log;
+namespace sinks = boost_logging::sinks;
 
 // Undefine the original TEST macro
 #undef TEST
@@ -70,6 +70,9 @@ protected:
       testBinaryDir = std::filesystem::current_path();
     }
 
+    // initialize sunshine logging
+    logging::init();
+
     // Create a sink that writes to our stringstream (BOOST_LOG)
     typedef sinks::synchronous_sink<sinks::text_ostream_backend> test_text_sink;
     test_sink = boost::make_shared<test_text_sink>();
@@ -79,7 +82,7 @@ protected:
     test_sink->locked_backend()->add_stream(stream);
 
     // Register the sink in the logging core (BOOST_LOG)
-    logging::core::get()->add_sink(test_sink);
+    boost_logging::core::get()->add_sink(test_sink);
 
     sbuf = std::cout.rdbuf();  // save cout buffer (std::cout)
     std::cout.rdbuf(cout_buffer.rdbuf());  // redirect cout to buffer (std::cout)
@@ -121,7 +124,7 @@ protected:
     }
 
     // Remove the sink from the logging core (BOOST_LOG)
-    logging::core::get()->remove_sink(test_sink);
+    boost_logging::core::get()->remove_sink(test_sink);
     test_sink.reset();
   }
 

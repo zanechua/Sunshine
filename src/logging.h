@@ -20,8 +20,11 @@ extern boost::log::sources::severity_logger<int> warning;
 extern boost::log::sources::severity_logger<int> error;
 extern boost::log::sources::severity_logger<int> fatal;
 
-// functions
-void
-log_flush();
-void
-print_help(const char *name);
+namespace logging {
+  void
+  init();
+  void
+  log_flush();
+  void
+  print_help(const char *name);
+}  // namespace logging

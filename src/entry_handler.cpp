@@ -87,12 +87,12 @@ namespace args {
    *
    * EXAMPLES:
    * ```cpp
-   * print_help("sunshine", 0, nullptr);
+   * help("sunshine", 0, nullptr);
    * ```
    */
   int
   help(const char *name, int argc, char *argv[]) {
-    print_help(name);
+    logging::print_help(name);
     return 0;
   }
 
