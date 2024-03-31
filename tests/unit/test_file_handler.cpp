@@ -12,7 +12,7 @@ TEST(FileHandlerTests, WriteFileTest) {
 
 TEST(FileHandlerTests, ReadFileTest) {
   // read file from WriteFileTest
-  EXPECT_EQ(file_handler::read_file("write_file_test.txt"), "test\n");  // sunshine adds a newline
+  EXPECT_EQ(file_handler::read_file("write_file_test.txt"), "test");
 
   // read missing file
   EXPECT_EQ(file_handler::read_file("non-existing-file.txt"), "");
